@@ -26,11 +26,6 @@
 
 var MyLayer = cc.Layer.extend({
     isMouseDown:false,
-    helloImg:null,
-    helloLabel:null,
-    circle:null,
-    sprite:null,
-
     init:function () {
 
         //////////////////////////////
@@ -44,6 +39,16 @@ var MyLayer = cc.Layer.extend({
         var size = cc.Director.getInstance().getWinSize();
 
         // add a "close" icon to exit the progress. it's an autorelease object
+
+        var okLabel = cc.LabelTTF.create("Continue", 30);
+        var okMenuItem = cc.MenuItemLabel.create(okLabel, function() {
+          var scene = cc.Scene.create();
+          var theCrash = new TheCrash();
+          scene.addChild(theCrash);
+          theCrash.init();
+          cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
+        }, this);
+
         var closeItem = cc.MenuItemImage.create(
             s_CloseNormal,
             s_CloseSelected,
@@ -52,26 +57,22 @@ var MyLayer = cc.Layer.extend({
             },this);
         closeItem.setAnchorPoint(cc.p(0.5, 0.5));
 
-        var menu = cc.Menu.create(closeItem);
+        var menu = cc.Menu.create(closeItem, okMenuItem);
         menu.setPosition(cc.p(0, 0));
         this.addChild(menu, 1);
         closeItem.setPosition(cc.p(size.width - 20, 20));
+        okMenuItem.setPosition(cc.p(size.width / 2, size.height /3));
 
-        /////////////////////////////
-        // 3. add your codes below...
-        // add a label shows "Hello World"
-        // create and initialize a label
-        this.helloLabel = cc.LabelTTF.create("Hello World", "Impact", 38);
-        // position the label on the center of the screen
-        this.helloLabel.setPosition(cc.p(size.width / 2, size.height - 40));
-        // add the label as a child to this layer
-        this.addChild(this.helloLabel, 5);
+        this.disclaimer = cc.LabelTTF.create("This game contains material that may be objectionable to some. Please continue with caution.", 20);
+        this.disclaimer.setPosition(cc.p(size.width / 2, size.height / 2));
+        this.addChild(this.disclaimer, 10);
 
-        // add "Helloworld" splash screen"
+/*
         this.sprite = cc.Sprite.create(s_HelloWorld);
         this.sprite.setAnchorPoint(cc.p(0.5, 0.5));
         this.sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(this.sprite, 0);
+*/
     }
 });
 

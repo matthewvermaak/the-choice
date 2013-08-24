@@ -183,6 +183,8 @@
             <sources dir="${basedir}">
                 <file name="src/resource.js"/>
                 <file name="src/myApp.js"/>
+                <file name="src/theCrash.js"/>
+                <file name="src/gameState.js"/>
                 <file name="main.js"/>
             </sources>
         </jscomp>
