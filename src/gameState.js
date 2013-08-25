@@ -161,12 +161,16 @@ var gState = cc.Layer.extend({
     this.dialogLabels = [];
     this.dialogMenuLabels = [];
     for(i; i < this.discourse.length; i++) {
-      var d = "< " + this.discourse[i].participant + " >";
-      if(this.discourse[i].dialog) {
-        d += " " + this.discourse[i].dialog;
-      }
+      var d = "< " + this.discourse[i].participant;
+
       if(this.discourse[i].action) {
-        d += " [" + this.discourse[i].action + "]";
+        d += " " + this.discourse[i].action.toLowerCase() + " >";
+      } else {
+        d += " >";
+      }
+
+      if(this.discourse[i].dialog) {
+        d += " \"" + this.discourse[i].dialog + "\"";
       }
       
       this.dialogLabels[i] = cc.LabelTTF.create(d, dialogFont, size.height / dialogFactor);
@@ -245,12 +249,15 @@ var gState = cc.Layer.extend({
     for(i; i < this.dialogOptionMenuLabels.length; i++) {
       if(i == theAnswer) {
         this.dialogOptionMenuLabels[i].runAction(cc.FadeOut.create(1.25));
-        var resolvedOption = "< you >";
-        if(this.dialogOptions[i].dialog) {
-          resolvedOption += " " + this.dialogOptions[i].dialog;
-        }
+        var resolvedOption = "< you ";
         if(this.dialogOptions[i].action) {
-          resolvedOption += " [" + this.dialogOptions[i].action + "]";
+          resolvedOption += this.dialogOptions[i].action.toLowerCase() + " >";
+        } else {
+          resolvedOption += ">";
+        }
+
+        if(this.dialogOptions[i].dialog) {
+          resolvedOption += " \"" + this.dialogOptions[i].dialog + "\"";
         }
         
         var pushIndex = this.dialogMenuLabels.length + 1;
@@ -305,6 +312,15 @@ var GameState = function(options) {
     }
 
     var size = cc.Director.getInstance().getWinSize();
+
+    var feedbackText = "Feedback? @matthewvermaak";
+    var feedbackLabel = cc.LabelTTF.create(feedbackText, dialogFont, dialogFont * 0.9);
+    feedbackLabel.setOpacity(0);
+    feedbackLabel.setAnchorPoint(cc.p(0,0));
+    feedbackLabel.setPosition(cc.p(size.width * 0.05, size.height * 0.05));
+
+    this.onLayer.addChild(feedbackLabel, 1);
+    feedbackLabel.runAction(cc.FadeIn.create(10));
 
     var i = 0;
     var heightOffset = (size.height * .75);
@@ -395,7 +411,7 @@ var GameState = function(options) {
         }
       })
     })],
-    description: ["You assist the mother to stand, her weight burdens you, slowing your pace. The child lingers behind her dress."]
+    description: ["You assist the mother to stand, her weight burdens you, slowing your pace.", "The child lingers behind her dress."]
   });
 
   this.slowlyButSurely = new gState();
@@ -534,6 +550,7 @@ var GameState = function(options) {
         action: "Guide the child out of the car",
         transitionTo: gTransition({
           transition: function() {
+            that.theSituation.child = 1;
             that.setCurrentState(that.guideChild);
           }
         })
@@ -584,7 +601,7 @@ var GameState = function(options) {
     introduction: [],
     discourse: [],
     dialogOptions:[gDialogOption({
-      dialog: "got ya",
+      dialog: "Got ya.",
       action: "Step back into the train to catch her",  
       transitionTo: gTransition({
         transition: function() {
@@ -620,7 +637,7 @@ var GameState = function(options) {
     description: ["The mother has begun her struggle to stand again. She reaches for your arm."],
     discourse: [gDialog({participant: "the mother", dialog: "help me... please..."})],
     dialogOptions:[gDialogOption({
-      dialog: "come",
+      dialog: "Come",
       action: "Grab the mother's hand",
       transitionTo: gTransition({
         transition: function() {
@@ -669,13 +686,13 @@ var GameState = function(options) {
       }})
     }), gDialogOption({
       at: "the woman",
-      dialog: "Lets get your daughter out first",
+      dialog: "Let's get your daughter out first",
       action: "Grab the daughter by the arm",
       transitionTo: gTransition({transition: function() {
         that.setCurrentState(that.getDaughterOut);
       }})
     })],
-    description: ["The train car is begining to slide. If you don't move fast, the whole car will slide off the bridge."]
+    description: ["The train car is begining to slide. The whole car will slide off the bridge soon.", "You must move fast."]
   });
 
   this.theBegining = new gState();
