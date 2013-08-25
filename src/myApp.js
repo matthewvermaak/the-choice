@@ -63,6 +63,8 @@ var MyLayer = cc.Layer.extend({
         this.disclaimer.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(this.disclaimer, 10);
 
+	cc.AudioEngine.getInstance().playMusic("res/the_choice_theme.wav", true);
+
 /*
         this.sprite = cc.Sprite.create(s_HelloWorld);
         this.sprite.setAnchorPoint(cc.p(0.5, 0.5));

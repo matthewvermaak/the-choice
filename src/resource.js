@@ -9,6 +9,7 @@ var g_resources = [
     {src:s_CloseNormal},
     {src:s_CloseSelected},
     {src:s_background},
+    {type:"bgm", src: "res/the_choice_theme.wav"}
 
     //plist
 
