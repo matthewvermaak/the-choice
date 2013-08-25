@@ -1,4 +1,5 @@
-= The Choice
+The Choice
+==========
 
 This is my first Ludum Dare entry for #LD48 (http://www.ludumdare.com/compo/).
 
@@ -10,7 +11,6 @@ and the decision will require perseverance.
 
 Warning: This material may be objectionable to some.
 
-Playable at: http://www.firstcommit.com/games/the-choice
+*Playable at: http://www.firstcommit.com/games/the-choice*
 
-Feedback?
-twitter - @matthewvermaak
+Feedback? @matthewvermaak
