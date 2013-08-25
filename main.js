@@ -33,6 +33,7 @@ var cocos2dApp = cc.Application.extend({
         cc.initDebugSetting();
         cc.setup(this.config['tag']);
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
+        cc.AudioEngine.getInstance().init("mp3,ogg,wav");
         cc.Loader.getInstance().onload = function () {
           cc.AppController.shareAppController().didFinishLaunchingWithOptions();
           cc.adjustSizeForWindow();
@@ -112,7 +113,7 @@ var cocos2dApp = cc.Application.extend({
         cc.EGLView.getInstance().setDesignResolutionSize(designSize.width, designSize.height, cc.RESOLUTION_POLICY.SHOW_ALL);
 
         // turn on display FPS
-        director.setDisplayStats(this.config['showFPS']);
+        director.setDisplayStats(false);
 
         // set FPS. the default value is 1.0/60 if you don't call this
         director.setAnimationInterval(1.0 / this.config['frameRate']);

@@ -40,7 +40,7 @@ var MyLayer = cc.Layer.extend({
 
         // add a "close" icon to exit the progress. it's an autorelease object
 
-        var okLabel = cc.LabelTTF.create("Continue", 30);
+        var okLabel = cc.LabelTTF.create("Continue", "Times New Roman", size.height / 20);
         var okMenuItem = cc.MenuItemLabel.create(okLabel, function() {
           var scene = cc.Scene.create();
           var theCrash = new TheCrash();
@@ -49,23 +49,21 @@ var MyLayer = cc.Layer.extend({
           cc.Director.getInstance().replaceScene(cc.TransitionFade.create(1.2, scene));
         }, this);
 
-        var closeItem = cc.MenuItemImage.create(
-            s_CloseNormal,
-            s_CloseSelected,
-            function () {
-                cc.log("close");
-            },this);
-        closeItem.setAnchorPoint(cc.p(0.5, 0.5));
-
-        var menu = cc.Menu.create(closeItem, okMenuItem);
+        var menu = cc.Menu.create(okMenuItem);
         menu.setPosition(cc.p(0, 0));
         this.addChild(menu, 1);
-        closeItem.setPosition(cc.p(size.width - 20, 20));
         okMenuItem.setPosition(cc.p(size.width / 2, size.height /3));
 
-        this.disclaimer = cc.LabelTTF.create("This game contains material that may be objectionable to some. Please continue with caution.", 20);
+        this.disclaimer = cc.LabelTTF.create("This game contains material that may be objectionable to some.", "Times New Roman", size.height / 20);
         this.disclaimer.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(this.disclaimer, 10);
+
+        this.credits = cc.LabelTTF.create("Music by Kevin Macleod", "Times New Roman", size.height / 30);
+        this.credits.setAnchorPoint(cc.p(0,0));
+        this.credits.setPosition(cc.p(size.width * 0.05, size.height * 0.05));
+        this.addChild(this.credits, 10);
+
+        cc.AudioEngine.getInstance().playMusic("res/CrypticSorrow.mp3", true);
 
 /*
         this.sprite = cc.Sprite.create(s_HelloWorld);
