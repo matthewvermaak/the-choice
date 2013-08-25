@@ -54,6 +54,11 @@ var MyLayer = cc.Layer.extend({
         this.addChild(menu, 1);
         okMenuItem.setPosition(cc.p(size.width / 2, size.height /3));
 
+        this.title = cc.LabelTTF.create("The Choice", "Times New Roman", size.height / 10);
+        this.title.setPosition(cc.p(size.width/2, 3*(size.height/4)));
+        this.addChild(this.title, 10);
+    
+
         this.disclaimer = cc.LabelTTF.create("This game contains material that may be objectionable to some.", "Times New Roman", size.height / 20);
         this.disclaimer.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(this.disclaimer, 10);

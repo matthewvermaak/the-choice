@@ -13,6 +13,5 @@ var TheCrash = cc.Layer.extend({
 
     this.gameState = new GameState({onLayer: this});
     this.gameState.setCurrentState(this.gameState.theBegining);
-
   }
 });

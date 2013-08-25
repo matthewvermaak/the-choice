@@ -299,13 +299,13 @@ var GameState = function(options) {
   this.displayEndGame = function() {
     var survivorText = ["In a flash, it was over."];
     if (this.theSituation.woman == 1) {
-      survivorText.push("The mother stood alone on the bridge, sobbing.");
-      survivorText.push("Wracked with guilt and grief holding her unborn, she screamed!");
+      survivorText.push("The mother stands alone on the bridge.");
+      survivorText.push("Wracked with guilt and grief, holding her belly, she screams.");
     } else if (this.theSituation.you == 1) {
       survivorText.push("You stand alone on the bridge.");
     } else if (this.theSituation.child == 1) {
       survivorText.push("The child stands alone on the bridge.");
-      survivorText.push("She collapses, crying and screaming over her mother.");
+      survivorText.push("She collapses, crying, and screaming over her mother.");
     } else {
       survivorText.push("The bridge is empty.");
     }
@@ -319,7 +319,7 @@ var GameState = function(options) {
     feedbackLabel.setPosition(cc.p(size.width * 0.05, size.height * 0.05));
 
     this.onLayer.addChild(feedbackLabel, 1);
-    feedbackLabel.runAction(cc.FadeIn.create(10));
+    feedbackLabel.runAction(cc.FadeIn.create(12));
 
     var i = 0;
     var heightOffset = (size.height * .75);
@@ -466,7 +466,7 @@ var GameState = function(options) {
   this.atTheExit = new gState();
   this.atTheExit.init({
     machine: this,
-    introduction: ["As you approach the back of the train car it shifts."],
+    introduction: ["As you approach the back of the train, the car shifts."],
     dialogOptions: [gDialogOption({
       action: "Reach for the exit door",
       transitionTo: gTransition({
@@ -475,8 +475,8 @@ var GameState = function(options) {
         }
       })
     })],
-    discourse: [gDialog({participant: "the mother whisper", dialog: "it will be alright"})],
-    description: ["The train car sways and screeches as it loosens its grip on the bridge.", "The child buries her head into her mother's dress, muffling a scream."]
+    discourse: [gDialog({participant: "the mother whispers", dialog: "it will be alright"})],
+    description: ["The train car sways and screeches as it loosens its grip on the bridge.", "The child buries her head into her mother's dress."]
   });
  
   this.atDoor = new gState();
@@ -721,7 +721,7 @@ var GameState = function(options) {
   this.theAccident.init({
     machine: this,
     introduction: ["You gaze out the window, focusing on the rhythm of the train wheels beating the tracks.", "The rhythm changes. Ahead, the bridge collapses."],
-    description: ["The train coils on itself, your car slides off the tracks.", "The bridge wall slows it enough to park it precariously teetering over the edge.",
+    description: ["The train coils on itself, your car slides off the tracks.", "The bridge wall slows it enough to lodge it precariously teetering over the edge.",
       "Your head is throbbing. Warmth washes over you. Blood has spilled into your vision.", "As you clear your eyes, you see the woman and her daughter across from you."],
     discourse: [gDialog({participant: "the woman screams", dialog: "Oh god!"})],
     dialogOptions: [
