@@ -617,7 +617,7 @@ var GameState = function(options) {
     introduction: ["The child, with tears streaming down her cheeks, tumbles out onto the bridge as she lets go of your hand."],
     discourse: [gDialog({participant: "the child sobbing", dialog: "...mommy..."}), gDialog({participant: "the mother continuing to struggle", dialog: "I'm coming baby"})],
     dialogOptions:[gDialogOption({
-        action: "Regain footing",
+        action: "Regain your footing",
         transitionTo: gTransition({
           transition: function() {
             that.setCurrentState(that.regainFooting);
