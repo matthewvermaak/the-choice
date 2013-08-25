@@ -303,7 +303,6 @@ var GameState = function(options) {
       survivorText.push("Wracked with guilt and grief holding her unborn, she screamed!");
     } else if (this.theSituation.you == 1) {
       survivorText.push("You stand alone on the bridge.");
-      survivorText.push("The mother and child below you in the river that flows under the bridge.");
     } else if (this.theSituation.child == 1) {
       survivorText.push("The child stands alone on the bridge.");
       survivorText.push("She collapses, crying and screaming over her mother.");
