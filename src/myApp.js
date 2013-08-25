@@ -63,13 +63,6 @@ var MyLayer = cc.Layer.extend({
         this.disclaimer.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(this.disclaimer, 10);
 
-        this.credits = cc.LabelTTF.create("Music by Kevin Macleod", "Times New Roman", size.height / 30);
-        this.credits.setAnchorPoint(cc.p(0,0));
-        this.credits.setPosition(cc.p(size.width * 0.05, size.height * 0.05));
-        this.addChild(this.credits, 10);
-
-        cc.AudioEngine.getInstance().playMusic("res/CrypticSorrow.mp3", true);
-
 /*
         this.sprite = cc.Sprite.create(s_HelloWorld);
         this.sprite.setAnchorPoint(cc.p(0.5, 0.5));

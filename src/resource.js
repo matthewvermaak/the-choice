@@ -9,7 +9,6 @@ var g_resources = [
     {src:s_CloseNormal},
     {src:s_CloseSelected},
     {src:s_background},
-    {type:"bgm",src:"res/CrypticSorrow.mp3"}
 
     //plist
 
