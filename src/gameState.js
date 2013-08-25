@@ -659,7 +659,7 @@ var GameState = function(options) {
   this.whatsHurt = new gState();
   this.whatsHurt.init({
     machine: this,
-    introduction: ["She is delirious, and does not respond to your question."],
+    introduction: ["She is hysterical, and does not respond to your question."],
     discourse: [gDialog({participant: "the woman", dialog: "Help!"}), gDialog({participant: "the child", dialog: "Mommy, I'm scared!"})],
     dialogOptions:[gDialogOption({
       dialog: "We need to get out of here",
